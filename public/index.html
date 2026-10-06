@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#14242a">
+<title>Messenger</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div id="net" hidden data-i="offline"></div>
+<main id="app">
+
+<section id="login" class="v"><form class="center" id="lf">
+  <h1 data-i="login.title"></h1><p class="hint" data-i="login.sub"></p>
+  <div class="card">
+    <input id="lu" dir="ltr" autocomplete="username" autocapitalize="off" data-ph="uname.ph">
+    <input id="lp" type="password" dir="ltr" autocomplete="current-password" data-ph="pw.ph">
+    <input id="ln" dir="auto" autocomplete="name" data-ph="name.ph" hidden>
+    <button class="btn" id="lgo"></button>
+    <button type="button" class="link" id="lmode"></button>
+  </div>
+  <div id="gbtn" style="display:flex;justify-content:center;margin:8px 0 16px" hidden></div>
+  <button type="button" class="btn" id="l-lang"></button>
+</form></section>
+
+<section id="uname" class="v"><form class="center" id="uf">
+  <h1 data-i="uname.title"></h1><p class="hint" data-i="uname.hint"></p>
+  <div class="card"><input id="un" dir="ltr" autocomplete="off" autocapitalize="off" data-ph="uname.ph"><button class="btn" data-i="uname.go"></button></div>
+</form></section>
+
+<section id="home" class="v">
+  <header class="top"><button class="av sm" id="hav"></button><h1 data-i="app"></h1></header>
+  <div class="srch"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="q" dir="auto" data-ph="searchChats" autocomplete="off"></div>
+
+  <div class="tab on" id="t-chats"><ul id="list"></ul><p class="hint" id="empty" data-i="empty"></p></div>
+
+  <div class="tab" id="t-find">
+    <div class="card"><input id="fu" dir="ltr" data-ph="find.ph" autocomplete="off" autocapitalize="off"><button class="btn" id="fgo" data-i="find.go"></button></div>
+    <p class="hint" data-i="find.hint"></p><div id="fres"></div>
+  </div>
+
+  <div class="tab" id="t-set"><div class="card">
+    <label data-i="lang"></label><select id="s-lang"><option value="fa">فارسی</option><option value="en">English</option></select>
+    <label data-i="digits"></label><select id="s-dig"><option value="" data-i="auto"></option><option value="arabext" data-i="dig.fa"></option><option value="latn" data-i="dig.en"></option></select>
+    <label data-i="calendar"></label><select id="s-cal"><option value="" data-i="auto"></option><option value="persian" data-i="cal.persian"></option><option value="gregory" data-i="cal.gregory"></option></select>
+  </div></div>
+
+  <div class="tab" id="t-prof"><div class="card" style="text-align:center">
+    <div class="av" id="pav" style="margin:0 auto 10px;width:84px;height:84px;font-size:2rem"></div>
+    <b id="pname" dir="auto"></b><p class="hint" id="puser" dir="ltr"></p>
+    <button class="btn" id="out" data-i="logout"></button>
+  </div></div>
+
+  <button id="fab" aria-label="+"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+  <nav>
+    <button class="on" data-tab="chats"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></svg><span data-i="tab.chats"></span></button>
+    <button data-tab="find"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c1-4 4-6 8-6s7 2 8 6"/></svg><span data-i="tab.contacts"></span></button>
+    <button data-tab="set"><svg viewBox="0 0 24 24"><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></svg><span data-i="tab.settings"></span></button>
+    <button data-tab="prof"><div class="av sm" id="nav-av" style="width:28px;height:28px;font-size:.9rem"></div><span data-i="tab.profile"></span></button>
+  </nav>
+</section>
+
+<section id="chat" class="v">
+  <header class="ch">
+    <button id="back"><svg class="flip" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <div class="av sm" id="cav"></div>
+    <div><b id="cname" dir="auto"></b><small id="cst"></small></div>
+  </header>
+  <div id="pinbar" hidden><div><small data-i="pinned"></small><span id="pintxt" dir="auto"></span></div><button id="unpin"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div id="msgs"></div>
+  <div class="bar">
+    <button id="att" class="at"><svg viewBox="0 0 24 24"><path d="M21 11l-8.5 8.5a5 5 0 01-7-7L14 4a3.5 3.5 0 015 5l-8.5 8.5a2 2 0 01-3-3L15 7"/></svg></button><input type="file" id="file" multiple hidden>
+    <textarea id="txt" rows="1" dir="auto" data-ph="msg.ph"></textarea>
+    <button id="send"><svg class="flip" viewBox="0 0 24 24" style="fill:currentColor;stroke:none"><path d="M3 20l18-8L3 4v6l11 2-11 2z"/></svg></button>
+  </div>
+</section>
+
+</main>
+<div id="sheet"><div id="sh"></div></div>
+<div id="toast"></div>
+<div id="lb" hidden><img alt=""></div>
+<script type="module" src="/app.js"></script>
+</body>
+</html>
