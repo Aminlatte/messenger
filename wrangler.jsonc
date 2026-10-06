@@ -1,0 +1,19 @@
+{
+  // Worker name must match the Worker name in the Cloudflare dashboard
+  "name": "messenger",
+  "main": "src/worker.js",
+  "compatibility_date": "2025-09-01",
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"],
+    "not_found_handling": "single-page-application"
+  },
+  "durable_objects": { "bindings": [{ "name": "HUB", "class_name": "Hub" }, { "name": "FILES", "class_name": "FileStore" }] },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["Hub"] }, { "tag": "v2", "new_sqlite_classes": ["FileStore"] }],
+  "triggers": { "crons": ["0 * * * *"] },
+  // No database_id on purpose: wrangler >= 4.45 creates this D1 database automatically on deploy
+  "d1_databases": [{ "binding": "DB", "database_name": "messenger-db" }],
+  // Public value (not a secret). Paste your Google OAuth Web client ID here.
+  "vars": { "GOOGLE_CLIENT_ID": "PASTE_YOUR_GOOGLE_CLIENT_ID_HERE" }
+}
